@@ -1,4 +1,4 @@
-def vowel_count(string):
+def vowel_counter(string):
     """count the number of vowels in a given string"""
     vowel_count = 0
     # interate over given string
