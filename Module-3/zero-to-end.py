@@ -11,6 +11,14 @@ def move_zero(lst):
     - After calling move_zero([]), the given list should be [] and the function returns nothing
     """
     # your code here
-    if x == 0:
-        lst.append(x)
- 
+
+    non_zero_index = 0
+
+    for num in lst:
+        if num != 0:
+            lst[non_zero_index] = num
+            non_zero_index += 1
+
+    for i in range(non_zero_index, len(lst)):
+        lst[i] = 0
+

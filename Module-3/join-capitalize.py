@@ -17,10 +17,18 @@ def capitalize_or_join_words(sentence):
     - The join() function creates a single string from a list of multiple strings
     """
     # your code here
-sentence = "hello, welcome to my world."
 
-capitalize_or_join_words = sentence.startswith("*")
+    if sentence.startswith("*"):
+        split_and_ignore_first_character = sentence[1:].split()
+        all_characters = [characters[0].upper() + characters[1:-1] + characters[-1].upper() for characters in split_and_ignore_first_character]
+        return ' '.join(all_characters)
+    else:
+        split_and_ignore_first_characters = sentence.split()
+        return ','.join(split_and_ignore_first_characters)
 
-print(sentence.capitalize())
+
+
+
+
 
 

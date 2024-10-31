@@ -14,8 +14,7 @@ def reverse_word(word):
     """
     
     # your code here
+    
     return word[::-1]
-reversing_word = reverse_word("abcdefgh")
-print (reverse_word(word))
 
 

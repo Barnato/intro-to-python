@@ -14,8 +14,4 @@ def remove_duplicates(lst):
     """
    
     # your code here
-    lst = list(set(lst))
-    return lst
- 
-lst = [1, 2, 3, 4, 5, 5]
-print(remove_duplicates(lst))
+    return list (set(lst))
