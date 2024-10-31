@@ -13,8 +13,7 @@ def concatenate(strings):
     """
     # your code here
 
-strings = ['a', 'b', 'c']
-concatenate_lists = ''.join(strings)
-print(concatenate_lists)
-
+    if strings == []:
+        return ""
+    return "".join(strings)
 

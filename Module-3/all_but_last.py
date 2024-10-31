@@ -9,9 +9,6 @@ def all_but_last(seq):
     - If we call all_but_last([]), we'll get None in return
     """
     # your code here
-seq = [1,2,3,4,5]
-all_but_last = seq[:-1]
-print(all_but_last)
-if seq == []:
-    print(None)
-
+  if seq == []:
+             return None
+        return seq[:-1] 
