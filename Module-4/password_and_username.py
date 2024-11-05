@@ -1,3 +1,5 @@
+from idlelib.autoexpand import AutoExpand
+
 def signup(user_accounts, log_in, username, password):
     '''
     This function allows users to sign up.
@@ -27,73 +29,40 @@ def signup(user_accounts, log_in, username, password):
 
 
     # your code here
-
-    if username is not in user_accounts and valid(password) and username is not equals to password
-        update username and password in user_accounts dictionary
-        update username and login T / F in log_in dictionary
-        return True
-
-    else
+    if username in user_accounts:
         return False
 
+    # Check if username and password are the same
+    if username == password:
+        return False
 
-def valid(password):
-    # write the code for valid password
-    # Debug/ Check if your valid funtin works as desired
-    return True / False
+    # Check password validity
+    if not valid_password(password):
+        return False
 
+    # Update user_accounts and log_in dictionaries
+    user_accounts[username] = password
+    log_in[username] = False
 
-def import_and_create_accounts(filename):
-    # your code here
-    initiate
-    user_accounts
-    dictionary
-    initiate
-    log_in
-    dictionary
-    user = open('user.txt', 'r')
+    return True
 
-    for line in user
-        if '-' not in line
-            continue
-
-        username = get
-        the
-        username
-        from the file
-        password = get
-        the
-        password
-        from the file
-
-        if username empty
-        continue
-    if password empty
-    continue
+def valid_password(password):
+    """
+    Helper function to check if the password meets the requirements.
+    """
+    if len(password) < 8:
+        return False
+    if not any(char.islower() for char in password):
+        return False
+    if not any(char.isupper() for char in password):
+        return False
+    if not any(char.isdigit() for char in password):
+        return False
+    return True
 
 
-signup(user_accounts, log_in, username, password)
-
-return user_accounts, log_in
 
 
-def import_and_create_accounts(filename):
-    # your code here
-    initiate user_accounts dictionary
-    initiate log_in dictionary
-    user = open('user.txt', 'r')
 
-    for line in user
-        if '-' not in line
-            continue
 
-        username = get the username from the file
-        password = get the password from the file
 
-        if username empty
-        continue
-    if password empty
-    continue
-signup(user_accounts, log_in, username, password)
-
-return user_accounts, log_in
