@@ -1,5 +1,3 @@
-from idlelib.autoexpand import AutoExpand
-
 def signup(user_accounts, log_in, username, password):
     '''
     This function allows users to sign up.
@@ -27,29 +25,24 @@ def signup(user_accounts, log_in, username, password):
     This will also come in handy when writing the change_password() function.
     '''
 
-
     # your code here
+
     if username in user_accounts:
         return False
 
-    # Check if username and password are the same
     if username == password:
         return False
 
-    # Check password validity
     if not valid_password(password):
         return False
 
-    # Update user_accounts and log_in dictionaries
     user_accounts[username] = password
     log_in[username] = False
 
     return True
 
+
 def valid_password(password):
-    """
-    Helper function to check if the password meets the requirements.
-    """
     if len(password) < 8:
         return False
     if not any(char.islower() for char in password):
@@ -59,10 +52,3 @@ def valid_password(password):
     if not any(char.isdigit() for char in password):
         return False
     return True
-
-
-
-
-
-
-

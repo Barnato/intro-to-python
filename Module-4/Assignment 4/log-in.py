@@ -15,7 +15,9 @@ def login(user_accounts, log_in, username, password):
     - Calling login(user_accounts, "Brandon", "brandon123ABC") will return True
     '''
 
+    # Check if the username exists in user_accounts and the password matches
     if username in user_accounts and user_accounts[username] == password:
+        # Update the user's log-in status to True
         log_in[username] = True
         return True
     else:

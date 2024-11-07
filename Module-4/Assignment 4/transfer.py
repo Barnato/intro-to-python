@@ -21,4 +21,20 @@ def transfer(bank, log_in, userA, userB, amount):
     - Calling transfer(bank, log_in, "Brandon", "Jack", 200) will return False
     '''
 
-    # your code here
+    if userA not in bank or not log_in.get(userA, False):
+        return False
+
+    if userB not in log_in:
+        return False
+
+    if bank[userA] < amount:
+        return False
+
+    bank[userA] -= amount
+
+    if userB in bank:
+        bank[userB] += amount
+    else:
+        bank[userB] = amount
+
+    return True
