@@ -4,40 +4,85 @@ def import_and_create_bank(filename):
     Every line in the file should be in the following format:
         key: value
     The key is a user's name and the value is an amount to update the user's bank account with. The value should be a
-    number; however, it is possible that there is no value or that the value is an invalid number.
+    number, however, it is possible that there is no value or that the value is an invalid number.
+
+    What you will do:
+    - Create an empty bank dictionary.
+    - Read in the file.
+    - Add keys and values to the dictionary from the contents of the file.
+    - If the key doesn't exist in the dictionary, create a new key:value pair.
+    - If the key does exist in the dictionary, increment its value with the amount.
+    - You should also handle the following cases:
+    -- When the value is missing or invalid. If so, ignore that line and don't update the dictionary.
+    -- When the line is completely blank. Again, ignore that line and don't update the dictionary.
+    -- When there is whitespace at the beginning or end of a line and/or between the name and value on a line. You
+    should trim any and all whitespace.
+    - Return the bank dictionary from this function.
+
+    For example, here's how your code should handle some specific lines in the file:
+    The 1st line in the file has a name and valid number:
+        Brandon: 5
+    Your code will process this line and add the extracted information to the dictionary. After it does,
+    the dictionary will look like this:
+        bank = {"Brandon": 5}
+
+    The 2nd line in the file also has a name and valid number:
+        Patrick: 18.9
+    Your code will also process this line and add the extracted information to the dictionary. After it does,
+    the dictionary will look like this:
+        bank = {"Brandon": 5, "Patrick": 18.9}
+
+    The 3rd line in the file has a name but invalid number:
+        Brandon: xyz
+    Your code will ignore this line and add nothing to the dictionary. It will still look like this:
+        bank = {"Brandon": 5, "Patrick": 18.9}
+
+    The 4th line in the file has a name but missing number:
+        Jack:
+    Your code will ignore this line and add nothing to the dictionary. It will still look like this:
+        bank = {"Brandon": 5, "Patrick": 18.9}
+
+    The 5th line in the file is completely blank.
+    Your code will ignore this line and add nothing to the dictionary. It will still look like this:
+        bank = {"Brandon": 5, "Patrick": 18.9}
+
+    The 8th line in the file has a name and valid number, but with extra whitespace:
+        Brandon: 10
+    Your code will process this line and update the value associated with the existing key ('Brandon') in the dictionary.
+    After it does, the value associated with the key 'Brandon' will be 10:
+        bank = {"Brandon": 15, ...}
+
+    After processing every line in the file, the dictionary will look like this:
+        bank = {"Brandon": 115.5, "Patrick": 18.9, "Sarah": 827.43, "Jack": 45.0, "James": 128.87}
+    Return the dictionary from this function.
     '''
+
     bank = {}
 
-    # Open file in read mode
-    f = open(filename, 'r')
+    with open(filename, 'r') as f:
+        lines = f.readlines()
 
-    # Get all lines in file as list
-    lines = f.readlines()
+        for line in lines:
+            line = line.strip()
 
-    # Iterate over each line in lines
-    for line in lines:
-        # Strip whitespace from beginning and end of line and split based on colon separator
-        lst = line.strip().split(':')
+            if line == "":
+                continue
 
-        if len(lst) <= 1:
-            continue
+            parts = line.split(':')
 
-        # Get key (name) and value (deposit amount) from line
-        key = lst[0].strip()
-        value = lst[1].strip()
+            if len(parts) != 2:
+                continue
 
-        try:
-            # Try to cast value (deposit amount) to numeric value
-            value = float(value)
+            key = parts[0].strip()
+            value = parts[1].strip()
 
-            # Add new deposit amount to current total balance associated with key (name), or 0 if key doesn't exist
-            bank[key] = bank.get(key, 0) + value
-        except ValueError:
-            # Otherwise, skip this line if value casting fails
-            continue
+            try:
+                value = float(value)
+                if key in bank:
+                    bank[key] += value
+                else:
+                    bank[key] = value
+            except ValueError:
+                continue
 
-    f.close()
-
-    print(bank)
     return bank
-

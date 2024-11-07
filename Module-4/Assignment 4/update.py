@@ -1,21 +1,3 @@
-from http.cookiejar import user_domain_match
-
-def update(bank, log_in, username, amount):
-
-    if username in user_accounts and user_accounts[username] == password:
-        log_in[username] = True
-        return True
-    else:
-        return False
-
-input
-Logged in user
-new amount
-
-output:
-new amount added
-update balance
-
 def update(bank, log_in, username, amount):
     '''
     In this function, you will try to update the given user's bank account with the given amount.
@@ -32,10 +14,20 @@ def update(bank, log_in, username, amount):
     Return True if the user's account was updated.
 
     For example, if Brandon has 115.50 in his account:
-    - Calling update(bank, log_in, "Brandon", 50) will return False, unless "Brandon" is first logged in.  Then it
-    will return True.  Brandon will then have 165.50 in his account.
+    - Calling update(bank, log_in, "Brandon", 50) will return False, unless "Brandon" is first logged in. Then it
+    will return True. Brandon will then have 165.50 in his account.
     - Calling update(bank, log_in, "Brandon", -200) will return False because Brandon does not have enough in his
     account.
     '''
 
-    # your code here
+    if username in log_in and log_in[username]:
+        if username not in bank:
+            bank[username] = 0.0
+
+        if bank[username] + amount >= 0:
+            bank[username] += amount
+            return True
+        else:
+            return False
+    else:
+        return False
